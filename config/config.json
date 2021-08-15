@@ -1,0 +1,31 @@
+{
+  "development": {
+    "username": "a78750_gp",
+    "password": "gestpark2021",
+    "database": "db_a78750_gp",
+    "host": "mysql5035.site4now.net",
+    "dialect": "mysql",
+    "define": {
+      "timestamps": false
+  }
+  },
+  "test": {
+    "username": "a78750_gp",
+    "password": "gestpark2021",
+    "database": "db_a78750_gp",
+    "host": "mysql5035.site4now.net",
+    "dialect": "mysql",
+    "define": {
+      "timestamps": false
+  }
+  },
+  "production": {
+    "username": "a78750_gp",
+    "password": "gestpark2021",
+    "database": "db_a78750_gp",
+    "host": "mysql5035.site4now.net",
+    "dialect": "mysql","define": {
+      "timestamps": false
+  }
+  }
+}
