@@ -51,7 +51,6 @@ module.exports = {
     const article_id = req.params.article_id;
     const date_from = req.body.date_from;
     const date_to = req.body.date_to;
-
     try {
       const recus = await models.Recu.findAll({
         attributes: [
