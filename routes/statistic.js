@@ -2,9 +2,10 @@ const express = require("express");
 const statisticController = require("../controllers/statistic.controller");
 const router = express.Router();
 
-router.get("/", statisticController.index);
-router.get("/:ville_id", statisticController.sortVille);
-router.post("/", statisticController.filterDate);
-router.post("/:ville_id", statisticController.sortVilleFilterDate);
+router.get("/day", statisticController.day);
+router.get("/week", statisticController.week);
+router.get("/month", statisticController.month);
+router.get("/year", statisticController.year);
+router.get("/seven", statisticController.seven);
 
 module.exports = router;

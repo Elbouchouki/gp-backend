@@ -1,257 +1,197 @@
 const models = require("../models");
-const { Sequelize, Op } = require("sequelize");
-
+const { Op, QueryTypes } = require("sequelize");
+const db = require("../models/index");
+const sequelize = db.sequelize;
+const moment = require("moment");
 module.exports = {
-  async index(req, res) {
+  async day(req, res) {
+    const startOfDay = moment(new Date()).format("YYYY-MM-DD 00:00:00");
+    const endOfDay = moment(new Date()).format("YYYY-MM-DD 23:59:59");
     try {
-      const total = await models.Recu.findAll({
+      const day = await models.Recu.findAll({
         attributes: [
-          [Sequelize.fn("count", Sequelize.col("recu.id")), "count"],
-          [Sequelize.fn("sum", Sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
+          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
         ],
+        where: {
+          date_paiment: { [Op.between]: [startOfDay, endOfDay] },
+          etats: { [Op.eq]: "confirmé" },
+        },
       });
-      const articles = await models.Recu.findAll({
+      const dayArticle = await models.Recu.findAll({
         attributes: [
-          [Sequelize.fn("count", Sequelize.col("recu.id")), "count"],
-          [Sequelize.fn("sum", Sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
+          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          "article_id",
         ],
-        group: ["article_id"],
-        include: [models.Article],
+        where: {
+          date_paiment: { [Op.between]: [startOfDay, endOfDay] },
+          etats: { [Op.eq]: "confirmé" },
+        },
+        group: "article_id",
       });
-      const villes = await models.Recu.findAll({
-        attributes: [
-          [Sequelize.fn("count", Sequelize.col("recu.id")), "count"],
-          [Sequelize.fn("sum", Sequelize.col("recu.valeur")), "sum"],
-        ],
-        group: ["ville_id"],
-        include: [models.Ville],
-      });
-      const mouvement_total = await models.Mouvement.count();
-      const mouvement_mouv = await models.Mouvement.findAll({
-        attributes: [
-          [Sequelize.fn("count", Sequelize.col("mouvement.id")), "count"],
-        ],
-        group: ["mouvement_id"],
-        include: [models.Mouv],
-      });
-      const mouvement_ville = await models.Mouvement.findAll({
-        attributes: [
-          [Sequelize.fn("count", Sequelize.col("mouvement.id")), "count"],
-        ],
-        group: ["ville_id"],
-        include: [models.Ville],
-      });
+
       res.status(200).json({
-        recus: {
-          total: total,
-          articles: articles,
-          villes: villes,
-        },
-        mouvements: {
-          total: mouvement_total,
-          mouvs: mouvement_mouv,
-          villes: mouvement_ville,
-        },
+        recus: day,
+        article: dayArticle,
       });
     } catch (error) {
+      console.log(error);
       res.status(500).json({
         message: "error",
       });
     }
   },
-  async filterDate(req, res) {
-    const date_from = req.body.date_from;
-    const date_to = req.body.date_to;
+  async week(req, res) {
+    const startOfWeek = moment()
+      .clone()
+      .startOf("isoWeek")
+      .format("YYYY-MM-DD 00:00:00");
+    const endOfWeek = moment()
+      .clone()
+      .endOf("isoWeek")
+      .format("YYYY-MM-DD 23:59:59");
+    const startOfDay = moment(new Date()).format("YYYY-MM-DD 00:00:00");
 
     try {
-      const total = await models.Recu.findAll({
+      const week = await models.Recu.findAll({
         attributes: [
-          [Sequelize.fn("count", Sequelize.col("recu.id")), "count"],
-          [Sequelize.fn("sum", Sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
+          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
         ],
         where: {
-          date_paiment: { [Op.between]: [date_from, date_to] },
+          date_paiment: { [Op.between]: [startOfWeek, startOfDay] },
+          etats: { [Op.eq]: "confirmé" },
         },
       });
-      const articles = await models.Recu.findAll({
+      const weekArticle = await models.Recu.findAll({
         attributes: [
-          [Sequelize.fn("count", Sequelize.col("recu.id")), "count"],
-          [Sequelize.fn("sum", Sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
+          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          "article_id",
         ],
         where: {
-          date_paiment: { [Op.between]: [date_from, date_to] },
+          date_paiment: { [Op.between]: [startOfWeek, startOfDay] },
+          etats: { [Op.eq]: "confirmé" },
         },
-        group: ["article_id"],
-        include: [models.Article],
-      });
-      const villes = await models.Recu.findAll({
-        attributes: [
-          [Sequelize.fn("count", Sequelize.col("recu.id")), "count"],
-          [Sequelize.fn("sum", Sequelize.col("recu.valeur")), "sum"],
-        ],
-        where: {
-          date_paiment: { [Op.between]: [date_from, date_to] },
-        },
-        group: ["ville_id"],
-        include: [models.Ville],
+        group: "article_id",
       });
 
-      const mouvement_total = await models.Mouvement.count({
-        where: {
-          date_paiment: { [Op.between]: [date_from, date_to] },
-        },
-      });
-      const mouvement_mouv = await models.Mouvement.findAll({
-        attributes: [
-          [Sequelize.fn("count", Sequelize.col("mouvement.id")), "count"],
-        ],
-        where: {
-          date_paiment: { [Op.between]: [date_from, date_to] },
-        },
-        group: ["mouvement_id"],
-        include: [models.Mouv],
-      });
-      const mouvement_ville = await models.Mouvement.findAll({
-        attributes: [
-          [Sequelize.fn("count", Sequelize.col("mouvement.id")), "count"],
-        ],
-        where: {
-          date_paiment: { [Op.between]: [date_from, date_to] },
-        },
-        group: ["ville_id"],
-        include: [models.Ville],
-      });
       res.status(200).json({
-        recus: {
-          total: total,
-          articles: articles,
-          villes: villes,
-        },
-        mouvements: {
-          total: mouvement_total,
-          mouvs: mouvement_mouv,
-          villes: mouvement_ville,
-        },
+        recus: week,
+        article: weekArticle,
       });
     } catch (error) {
+      console.log(error);
       res.status(500).json({
         message: "error",
       });
     }
   },
-  async sortVille(req, res) {
-    const ville_id = req.params.ville_id;
-    try {
-      const total = await models.Recu.findAll({
-        attributes: [
-          [Sequelize.fn("count", Sequelize.col("recu.id")), "count"],
-          [Sequelize.fn("sum", Sequelize.col("recu.valeur")), "sum"],
-        ],
-        where: {
-          ville_id: { [Op.eq]: ville_id },
-        },
-      });
-      const articles = await models.Recu.findAll({
-        attributes: [
-          [Sequelize.fn("count", Sequelize.col("recu.id")), "count"],
-          [Sequelize.fn("sum", Sequelize.col("recu.valeur")), "sum"],
-        ],
-        where: {
-          ville_id: { [Op.eq]: ville_id },
-        },
-        group: ["article_id"],
-        include: [models.Article],
-      });
+  async month(req, res) {
+    const startOfMonth = moment()
+      .startOf("month")
+      .format("YYYY-MM-DD 00:00:00");
+    const endOfMonth = moment().endOf("month").format("YYYY-MM-DD 23:59:59");
+    const startOfDay = moment(new Date()).format("YYYY-MM-DD 00:00:00");
 
-      const mouvement_total = await models.Mouvement.count({
-        where: {
-          ville_id: { [Op.eq]: ville_id },
-        },
-      });
-      const mouvement_mouv = await models.Mouvement.findAll({
+    try {
+      const month = await models.Recu.findAll({
         attributes: [
-          [Sequelize.fn("count", Sequelize.col("mouvement.id")), "count"],
+          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
+          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
         ],
         where: {
-          ville_id: { [Op.eq]: ville_id },
+          date_paiment: { [Op.between]: [startOfMonth, startOfDay] },
+          etats: { [Op.eq]: "confirmé" },
         },
-        group: ["mouvement_id"],
-        include: [models.Mouv],
+      });
+      const monthArticle = await models.Recu.findAll({
+        attributes: [
+          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
+          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          "article_id",
+        ],
+        where: {
+          date_paiment: { [Op.between]: [startOfMonth, startOfDay] },
+          etats: { [Op.eq]: "confirmé" },
+        },
+        group: "article_id",
       });
 
       res.status(200).json({
-        recus: {
-          total: total,
-          articles: articles,
-        },
-        mouvements: {
-          total: mouvement_total,
-          mouvs: mouvement_mouv,
-        },
+        recus: month,
+        article: monthArticle,
       });
     } catch (error) {
+      console.log(error);
       res.status(500).json({
         message: "error",
       });
     }
   },
-  async sortVilleFilterDate(req, res) {
-    const ville_id = req.params.ville_id;
-    const date_from = req.body.date_from;
-    const date_to = req.body.date_to;
+  async year(req, res) {
+    const startOfYear = moment().startOf("year").format("YYYY-MM-DD 00:00:00");
+    const endOfYear = moment().endOf("year").format("YYYY-MM-DD 23:59:59");
+    const startOfDay = moment(new Date()).format("YYYY-MM-DD 00:00:00");
+
     try {
-      const total = await models.Recu.findAll({
+      const year = await models.Recu.findAll({
         attributes: [
-          [Sequelize.fn("count", Sequelize.col("recu.id")), "count"],
-          [Sequelize.fn("sum", Sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
+          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
         ],
         where: {
-          ville_id: { [Op.eq]: ville_id },
-          date_paiment: { [Op.between]: [date_from, date_to] },
+          date_paiment: { [Op.between]: [startOfYear, startOfDay] },
+          etats: { [Op.eq]: "confirmé" },
         },
       });
-      const articles = await models.Recu.findAll({
+      const yearArticle = await models.Recu.findAll({
         attributes: [
-          [Sequelize.fn("count", Sequelize.col("recu.id")), "count"],
-          [Sequelize.fn("sum", Sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
+          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          "article_id",
         ],
         where: {
-          ville_id: { [Op.eq]: ville_id },
-          date_paiment: { [Op.between]: [date_from, date_to] },
+          date_paiment: { [Op.between]: [startOfYear, startOfDay] },
+          etats: { [Op.eq]: "confirmé" },
         },
-        group: ["article_id"],
-        include: [models.Article],
+        group: "article_id",
       });
-
-      const mouvement_total = await models.Mouvement.count({
-        where: {
-          ville_id: { [Op.eq]: ville_id },
-          date_paiment: { [Op.between]: [date_from, date_to] },
-        },
-      });
-      const mouvement_mouv = await models.Mouvement.findAll({
-        attributes: [
-          [Sequelize.fn("count", Sequelize.col("mouvement.id")), "count"],
-        ],
-        where: {
-          ville_id: { [Op.eq]: ville_id },
-          date_paiment: { [Op.between]: [date_from, date_to] },
-        },
-        group: ["mouvement_id"],
-        include: [models.Mouv],
-      });
-
       res.status(200).json({
-        recus: {
-          total: total,
-          articles: articles,
-        },
-        mouvements: {
-          total: mouvement_total,
-          mouvs: mouvement_mouv,
-        },
+        recus: year,
+        article: yearArticle,
       });
     } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: "error",
+      });
+    }
+  },
+  async seven(req, res) {
+    const endOfDay = moment(new Date()).format("YYYY-MM-DD 23:59:59");
+    const endOfSeven = moment(
+      new Date().setMonth(new Date().getMonth() - 7)
+    ).format("YYYY-MM-DD 00:00:00");
+    try {
+      const seven = await models.Recu.findAll({
+        attributes: [
+          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
+          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("month", sequelize.col("recu.date_paiment")), "month"],
+        ],
+        where: {
+          date_paiment: { [Op.between]: [endOfSeven, endOfDay] },
+          etats: { [Op.eq]: "confirmé" },
+        },
+        group: "month",
+      });
+      res.status(200).json({
+        seven: seven,
+      });
+    } catch (error) {
+      console.log(error);
       res.status(500).json({
         message: "error",
       });
