@@ -5,12 +5,15 @@ module.exports = {
     return queryInterface.bulkInsert("mouvs", [
       {
         desc_mouv: "entrée en bras cassé",
+        type: "Entrées",
       },
       {
         desc_mouv: "entrée en manuel",
+        type: "Entrées",
       },
       {
         desc_mouv: "sortie en ouv.maint",
+        type: "Sorties",
       },
     ]);
   },

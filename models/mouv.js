@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   Mouv.init(
     {
       desc_mouv: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
     {
       sequelize,

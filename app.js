@@ -11,11 +11,13 @@ const mouvementRoute = require("./routes/mouvement");
 const articleRoute = require("./routes/article");
 const statisticRoute = require("./routes/statistic");
 const villeRoute = require("./routes/ville");
+const tarifRoute = require("./routes/tarif");
 app.use("/users", userRoute);
 app.use("/villes", villeRoute);
 app.use("/recus", recuRoute);
 app.use("/mouvements", mouvementRoute);
 app.use("/articles", articleRoute);
 app.use("/statistic", statisticRoute);
+app.use("/tarifs", tarifRoute);
 
 module.exports = app;
