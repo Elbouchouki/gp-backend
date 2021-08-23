@@ -5,6 +5,10 @@
     "database": "db_a78750_gp",
     "host": "mysql5035.site4now.net",
     "dialect": "mysql",
+    "dialectOptions": {
+      "useUTC": false
+    },
+    "timezone":"+01:00",
     "define": {
       "timestamps": false
   }
@@ -15,6 +19,10 @@
     "database": "db_a78750_gp",
     "host": "mysql5035.site4now.net",
     "dialect": "mysql",
+    "dialectOptions": {
+      "useUTC": false
+    },
+    "timezone":"+01:00",
     "define": {
       "timestamps": false
   }
@@ -26,6 +34,10 @@
     "host": "mysql5035.site4now.net",
     "dialect": "mysql","define": {
       "timestamps": false
-  }
+    },
+    "dialectOptions": {
+      "useUTC": false
+    },
+    "timezone":"+01:00"
   }
 }
