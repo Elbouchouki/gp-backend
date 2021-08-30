@@ -23,9 +23,8 @@ module.exports = {
           username: { [Op.eq]: username },
           password: { [Op.eq]: password },
         },
-        include: [models.Role],
+        include: { all: true, nested: true },
       });
-
       if (user) {
         const token = generateAcessToken(username, user.Role?.role_name);
         res.status(200).json({
@@ -37,6 +36,7 @@ module.exports = {
             phone: user.phone,
             mail: user.mail,
             role: user.Role?.role_name,
+            permissions: user.Role?.perms,
           },
           token,
         });
