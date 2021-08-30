@@ -16,12 +16,16 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       article_id: {
-        allowNull: true,
         type: Sequelize.INTEGER,
+        references: { model: "Articles", key: "id" },
+        onDelete: "CASCADE",
+        allowNull: false,
       },
       ville_id: {
-        allowNull: true,
         type: Sequelize.INTEGER,
+        references: { model: "Villes", key: "id" },
+        onDelete: "CASCADE",
+        allowNull: false,
       },
       societe: {
         allowNull: true,

@@ -5,6 +5,9 @@ var cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
+const { checkAuth, checkRole } = require("./middleware/check-auth");
+const { ROLE } = require("./helper/role");
+
 const userRoute = require("./routes/user");
 const recuRoute = require("./routes/recu");
 const mouvementRoute = require("./routes/mouvement");
@@ -12,12 +15,52 @@ const articleRoute = require("./routes/article");
 const statisticRoute = require("./routes/statistic");
 const villeRoute = require("./routes/ville");
 const tarifRoute = require("./routes/tarif");
-app.use("/users", userRoute);
-app.use("/villes", villeRoute);
-app.use("/recus", recuRoute);
-app.use("/mouvements", mouvementRoute);
-app.use("/articles", articleRoute);
-app.use("/statistic", statisticRoute);
-app.use("/tarifs", tarifRoute);
+// const excelRoute = require("./routes/excel");
+const authRoute = require("./routes/auth");
+
+app.use(
+  "/users",
+  //   checkAuth,
+  //   checkRole[(ROLE.ADMIN, ROLE.FINANCER, ROLE.NORMAL)],
+  userRoute
+);
+app.use(
+  "/villes",
+  //   checkAuth,
+  //   checkRole[(ROLE.ADMIN, ROLE.FINANCER, ROLE.NORMAL)],
+  villeRoute
+);
+app.use(
+  "/recus",
+  //   checkAuth,
+  //   checkRole[(ROLE.ADMIN, ROLE.FINANCER, ROLE.NORMAL)],
+  recuRoute
+);
+app.use(
+  "/mouvements",
+  //   checkAuth,
+  //   checkRole[(ROLE.ADMIN, ROLE.FINANCER, ROLE.NORMAL)],
+  mouvementRoute
+);
+app.use(
+  "/articles",
+  //   checkAuth,
+  //   checkRole[(ROLE.ADMIN, ROLE.FINANCER, ROLE.NORMAL)],
+  articleRoute
+);
+app.use(
+  "/statistic",
+  //   checkAuth,
+  //   checkRole[(ROLE.ADMIN, ROLE.FINANCER, ROLE.NORMAL)],
+  statisticRoute
+);
+app.use(
+  "/tarifs",
+  //   checkAuth,
+  //   checkRole[(ROLE.ADMIN, ROLE.FINANCER, ROLE.NORMAL)],
+  tarifRoute
+);
+// app.use("/excel", excelRoute);
+app.use("/auth", authRoute);
 
 module.exports = app;

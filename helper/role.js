@@ -1,6 +1,6 @@
 const ROLE = {
-  ADMIN: 1,
-  FINANCER: 2,
-  NORMAL: 3,
+  ADMIN: "admin",
+  FINANCER: "financer",
+  NORMAL: "normal",
 };
 module.exports = { ROLE };

@@ -16,8 +16,9 @@ module.exports = {
         type: Sequelize.STRING,
       },
       mouvement_id: {
-        allowNull: true,
         type: Sequelize.INTEGER,
+        references: { model: "Mouvs", key: "id" },
+        allowNull: false,
       },
       ville_id: {
         allowNull: true,
