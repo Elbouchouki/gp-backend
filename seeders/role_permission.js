@@ -15,7 +15,7 @@ module.exports = {
     ];
     const permissionList = [
       {
-        name: "show_recu",
+        name: "show_recu_normal",
         type: "show",
       },
       {
@@ -46,20 +46,40 @@ module.exports = {
         name: "update_self",
         type: "self",
       },
+      {
+        name: "show_recu_illisible",
+        type: "show",
+      },
+      {
+        name: "show_recu_perdu",
+        type: "show",
+      },
+      {
+        name: "show_recu_entree_abonne",
+        type: "show",
+      },
+      {
+        name: "show_recu_recharge_abonne",
+        type: "show",
+      },
     ];
     // const [admin, financer, normal] =
     const firstRoleID = await queryInterface.bulkInsert("roles", rolesList, {
       returning: true,
     });
     // const [
-    //   show_recu,
-    //   show_mouvement,
-    //   show_annulation,
-    //   export_excel,
-    //   add_user,
-    //   delete_user,
-    //   update_user,
-    //   update_self,
+    //   show_recu_normal,0
+    //   show_mouvement,1
+    //   show_annulation,2
+    //   export_excel,3
+    //   add_user,4
+    //   delete_user,5
+    //   update_user,6
+    //   update_self,7
+    //   show_recu_illisible,8
+    //   show_recu_perdu,9
+    //   show_recu_entree_abonne,10
+    //   show_recu_recharge_abonne,11
     // ] =
     const firstPermID = await queryInterface.bulkInsert(
       "permissions",
@@ -102,7 +122,22 @@ module.exports = {
         PermissionId: firstPermID + 7,
         RoleID: firstRoleID,
       },
-
+      {
+        PermissionId: firstPermID + 8,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 9,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 10,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 11,
+        RoleID: firstRoleID,
+      },
       //financer
       {
         PermissionId: firstPermID,
@@ -114,6 +149,14 @@ module.exports = {
       },
       {
         PermissionId: firstPermID + 7,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 8,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 11,
         RoleID: firstRoleID + 1,
       },
 
@@ -128,6 +171,10 @@ module.exports = {
       },
       {
         PermissionId: firstPermID + 7,
+        RoleID: firstRoleID + 2,
+      },
+      {
+        PermissionId: firstPermID + 10,
         RoleID: firstRoleID + 2,
       },
     ];
