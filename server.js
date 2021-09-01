@@ -2,9 +2,5 @@ const http = require("http");
 const app = require("./app");
 const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
-// const x = [1, 2];
-// const z = 2;
-// const y = [1, 2];
-// // console.log(x.includes(y));
-// console.log(y.some((i) => i === z));
+
 app.listen(PORT, () => console.log(`serving on ${PORT}`));

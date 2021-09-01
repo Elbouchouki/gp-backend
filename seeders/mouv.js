@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert("mouvs", [
+    return queryInterface.bulkInsert("Mouvs", [
       {
         desc_mouv: "entrée en bras cassé",
         type: "Entrées",
@@ -19,7 +19,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("mouvs");
+    return queryInterface.bulkDelete("Mouvs");
     /**
      * Add commands to revert seed here.
      *

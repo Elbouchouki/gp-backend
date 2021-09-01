@@ -64,7 +64,7 @@ module.exports = {
       },
     ];
     // const [admin, financer, normal] =
-    const firstRoleID = await queryInterface.bulkInsert("roles", rolesList, {
+    const firstRoleID = await queryInterface.bulkInsert("Roles", rolesList, {
       returning: true,
     });
     // const [
@@ -82,7 +82,7 @@ module.exports = {
     //   show_recu_recharge_abonne,11
     // ] =
     const firstPermID = await queryInterface.bulkInsert(
-      "permissions",
+      "Permissions",
       permissionList,
       {
         returning: true,
@@ -178,12 +178,12 @@ module.exports = {
         RoleID: firstRoleID + 2,
       },
     ];
-    await queryInterface.bulkInsert("rolepermissions", rolePermissionList);
+    await queryInterface.bulkInsert("RolePermissions", rolePermissionList);
   },
 
   down: async (queryInterface) => {
-    await queryInterface.bulkDelete("roles", null, {});
-    await queryInterface.bulkDelete("permissions", null, {});
-    await queryInterface.bulkDelete("rolepermissions", null, {});
+    await queryInterface.bulkDelete("Roles", null, {});
+    await queryInterface.bulkDelete("Permissions", null, {});
+    await queryInterface.bulkDelete("RolePermissions", null, {});
   },
 };

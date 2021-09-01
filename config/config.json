@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "a78750_gp",
-    "password": "gestpark2021",
-    "database": "db_a78750_gp",
-    "host": "mysql5035.site4now.net",
+    "username": "dyxsrmdu_gp",
+    "password": "Gestpark2021",
+    "database": "dyxsrmdu_gp",
+    "host": "svr3.educationhost.cloud",
     "dialect": "mysql",
     "dialectOptions": {
       "useUTC": false
@@ -14,10 +14,10 @@
   }
   },
   "test": {
-    "username": "a78750_gp",
-    "password": "gestpark2021",
-    "database": "db_a78750_gp",
-    "host": "mysql5035.site4now.net",
+    "username": "dyxsrmdu_gp",
+    "password": "Gestpark2021",
+    "database": "dyxsrmdu_gp",
+    "host": "svr3.educationhost.cloud",
     "dialect": "mysql",
     "dialectOptions": {
       "useUTC": false
@@ -28,10 +28,10 @@
   }
   },
   "production": {
-    "username": "a78750_gp",
-    "password": "gestpark2021",
-    "database": "db_a78750_gp",
-    "host": "mysql5035.site4now.net",
+    "username": "dyxsrmdu_gp",
+    "password": "Gestpark2021",
+    "database": "dyxsrmdu_gp",
+    "host": "svr3.educationhost.cloud",
     "dialect": "mysql","define": {
       "timestamps": false
     },
