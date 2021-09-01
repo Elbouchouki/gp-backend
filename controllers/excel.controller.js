@@ -19,7 +19,7 @@ module.exports = {
             ),
             "date",
           ],
-          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("sum", sequelize.col("Recu.valeur")), "sum"],
         ],
         where: {
           date_paiment: { [Op.between]: [date_from, date_to] },

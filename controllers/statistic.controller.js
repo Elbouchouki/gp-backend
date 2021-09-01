@@ -10,8 +10,8 @@ module.exports = {
     try {
       const day = await models.Recu.findAll({
         attributes: [
-          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
-          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
         ],
         where: {
           date_paiment: { [Op.between]: [startOfDay, endOfDay] },
@@ -20,8 +20,8 @@ module.exports = {
       });
       const dayArticle = await models.Recu.findAll({
         attributes: [
-          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
-          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
           "article_id",
         ],
         where: {
@@ -56,8 +56,8 @@ module.exports = {
     try {
       const week = await models.Recu.findAll({
         attributes: [
-          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
-          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
         ],
         where: {
           date_paiment: { [Op.between]: [startOfWeek, startOfDay] },
@@ -66,8 +66,8 @@ module.exports = {
       });
       const weekArticle = await models.Recu.findAll({
         attributes: [
-          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
-          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
           "article_id",
         ],
         where: {
@@ -98,8 +98,8 @@ module.exports = {
     try {
       const month = await models.Recu.findAll({
         attributes: [
-          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
-          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
         ],
         where: {
           date_paiment: { [Op.between]: [startOfMonth, startOfDay] },
@@ -108,8 +108,8 @@ module.exports = {
       });
       const monthArticle = await models.Recu.findAll({
         attributes: [
-          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
-          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
           "article_id",
         ],
         where: {
@@ -138,8 +138,8 @@ module.exports = {
     try {
       const year = await models.Recu.findAll({
         attributes: [
-          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
-          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
         ],
         where: {
           date_paiment: { [Op.between]: [startOfYear, startOfDay] },
@@ -148,8 +148,8 @@ module.exports = {
       });
       const yearArticle = await models.Recu.findAll({
         attributes: [
-          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
-          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
           "article_id",
         ],
         where: {
@@ -177,9 +177,9 @@ module.exports = {
     try {
       const seven = await models.Recu.findAll({
         attributes: [
-          [sequelize.fn("count", sequelize.col("recu.id")), "count"],
-          [sequelize.fn("sum", sequelize.col("recu.valeur")), "sum"],
-          [sequelize.fn("month", sequelize.col("recu.date_paiment")), "month"],
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
+          [sequelize.fn("month", sequelize.col("date_paiment")), "month"],
         ],
         where: {
           date_paiment: { [Op.between]: [endOfSeven, endOfDay] },
