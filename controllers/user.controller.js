@@ -4,7 +4,9 @@ const { Sequelize, Op } = require("sequelize");
 module.exports = {
   async index(req, res) {
     try {
-      const users = await models.User.findAll({});
+      const users = await models.User.findAll({
+        include: { all: true, nested: true },
+      });
       res.status(200).json({
         users: users,
       });
