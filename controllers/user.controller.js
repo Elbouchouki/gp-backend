@@ -120,9 +120,17 @@ module.exports = {
       const mail = req.body.mail;
       const password = req.body.password;
       const role_id = req.body.role_id;
-
+      const checkUser = await models.User.findOne({
+        where: { username: { [Op.eq]: username } },
+      });
+      if (!checkUser) {
+        res.status(404).json({
+          message: "User doesn't exist",
+        });
+        return;
+      }
       const checkCIN = await models.User.findOne({
-        where: { cin: { [Op.eq]: cin } },
+        where: { cin: { [Op.eq]: cin }, username: { [Op.ne]: username } },
       });
       if (checkCIN) {
         res.status(409).json({
@@ -131,7 +139,7 @@ module.exports = {
         return;
       }
       const checkEmail = await models.User.findOne({
-        where: { mail: { [Op.eq]: mail } },
+        where: { mail: { [Op.eq]: mail }, username: { [Op.ne]: username } },
       });
       if (checkEmail) {
         res.status(409).json({
