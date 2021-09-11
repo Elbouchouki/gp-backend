@@ -15,7 +15,7 @@ const articleRoute = require("./routes/article");
 const statisticRoute = require("./routes/statistic");
 const villeRoute = require("./routes/ville");
 const tarifRoute = require("./routes/tarif");
-// const excelRoute = require("./routes/excel");
+const excelRoute = require("./routes/excel");
 const authRoute = require("./routes/auth");
 const rolePermissionRoute = require("./routes/rolePermission.js");
 
@@ -62,7 +62,7 @@ app.use(
   checkRole([ROLE.ADMIN, ROLE.FINANCER, ROLE.NORMAL]),
   tarifRoute
 );
-// app.use("/excel", excelRoute);
+app.use("/excel", excelRoute);
 app.use("/auth", authRoute);
 
 module.exports = app;
