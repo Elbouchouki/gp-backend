@@ -34,15 +34,12 @@ module.exports = {
     const date_from = req.body.date_from;
     const date_to = req.body.date_to;
     try {
-      const resp = await sequelize.query(
-        "call getExcel_all(,:date_f,:date_t)",
-        {
-          replacements: {
-            date_f: date_from,
-            date_t: date_to,
-          },
-        }
-      );
+      const resp = await sequelize.query("call getExcel_all(:date_f,:date_t)", {
+        replacements: {
+          date_f: date_from,
+          date_t: date_to,
+        },
+      });
 
       res.status(200).json({
         result: resp,

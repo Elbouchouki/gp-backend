@@ -4,6 +4,44 @@ const db = require("../models/index");
 const sequelize = db.sequelize;
 const moment = require("moment");
 module.exports = {
+  async index(req, res) {
+    const startOfDay = req.body.date_from;
+    const endOfDay = req.body.date_to;
+    try {
+      const day = await models.Recu.findAll({
+        attributes: [
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
+        ],
+        where: {
+          date_paiment: { [Op.between]: [startOfDay, endOfDay] },
+          etats: { [Op.eq]: "confirmé" },
+        },
+      });
+      const dayArticle = await models.Recu.findAll({
+        attributes: [
+          [sequelize.fn("count", sequelize.col("id")), "count"],
+          [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
+          "article_id",
+        ],
+        where: {
+          date_paiment: { [Op.between]: [startOfDay, endOfDay] },
+          etats: { [Op.eq]: "confirmé" },
+        },
+        group: "article_id",
+      });
+
+      res.status(200).json({
+        recus: day,
+        article: dayArticle,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: "error",
+      });
+    }
+  },
   async day(req, res) {
     const startOfDay = moment(new Date()).format("YYYY-MM-DD 00:00:00");
     const endOfDay = moment(new Date()).format("YYYY-MM-DD 23:59:59");
