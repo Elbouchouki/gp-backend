@@ -98,7 +98,7 @@ module.exports = {
           [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
         ],
         where: {
-          date_paiment: { [Op.between]: [startOfWeek, startOfDay] },
+          date_paiment: { [Op.between]: [startOfWeek, endOfWeek] },
           etats: { [Op.eq]: "confirmé" },
         },
       });
@@ -109,7 +109,7 @@ module.exports = {
           "article_id",
         ],
         where: {
-          date_paiment: { [Op.between]: [startOfWeek, startOfDay] },
+          date_paiment: { [Op.between]: [startOfWeek, endOfWeek] },
           etats: { [Op.eq]: "confirmé" },
         },
         group: "article_id",
@@ -140,7 +140,7 @@ module.exports = {
           [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
         ],
         where: {
-          date_paiment: { [Op.between]: [startOfMonth, startOfDay] },
+          date_paiment: { [Op.between]: [startOfMonth, endOfMonth] },
           etats: { [Op.eq]: "confirmé" },
         },
       });
@@ -151,7 +151,7 @@ module.exports = {
           "article_id",
         ],
         where: {
-          date_paiment: { [Op.between]: [startOfMonth, startOfDay] },
+          date_paiment: { [Op.between]: [startOfMonth, endOfMonth] },
           etats: { [Op.eq]: "confirmé" },
         },
         group: "article_id",
@@ -180,7 +180,7 @@ module.exports = {
           [sequelize.fn("sum", sequelize.col("valeur")), "sum"],
         ],
         where: {
-          date_paiment: { [Op.between]: [startOfYear, startOfDay] },
+          date_paiment: { [Op.between]: [startOfYear, endOfYear] },
           etats: { [Op.eq]: "confirmé" },
         },
       });
@@ -191,7 +191,7 @@ module.exports = {
           "article_id",
         ],
         where: {
-          date_paiment: { [Op.between]: [startOfYear, startOfDay] },
+          date_paiment: { [Op.between]: [startOfYear, endOfYear] },
           etats: { [Op.eq]: "confirmé" },
         },
         group: "article_id",
