@@ -15,6 +15,10 @@ module.exports = {
         desc_mouv: "sortie en ouv.maint",
         type: "Sorties",
       },
+      {
+        desc_mouv: "sortie en manuel",
+        type: "Sorties",
+      },
     ]);
   },
 

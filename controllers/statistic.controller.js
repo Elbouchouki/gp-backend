@@ -209,9 +209,7 @@ module.exports = {
   },
   async seven(req, res) {
     const endOfDay = moment(new Date()).format("YYYY-MM-DD 23:59:59");
-    const endOfSeven = moment(
-      new Date().setMonth(new Date().getMonth() - 7)
-    ).format("YYYY-MM-DD 00:00:00");
+    const startOfYear = moment().startOf("year").format("YYYY-MM-DD 00:00:00");
     try {
       const seven = await models.Recu.findAll({
         attributes: [
@@ -220,7 +218,7 @@ module.exports = {
           [sequelize.fn("month", sequelize.col("date_paiment")), "month"],
         ],
         where: {
-          date_paiment: { [Op.between]: [endOfSeven, endOfDay] },
+          date_paiment: { [Op.between]: [startOfYear, endOfDay] },
           etats: { [Op.eq]: "confirmé" },
         },
         group: "month",

@@ -9,7 +9,7 @@ module.exports = {
       },
       {
         nom_ville: "casablanca",
-        active: true,
+        active: false,
       },
       {
         nom_ville: "mohmmadia",

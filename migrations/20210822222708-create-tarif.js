@@ -14,6 +14,9 @@ module.exports = {
       label: {
         type: Sequelize.STRING,
       },
+      type: {
+        type: Sequelize.STRING,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

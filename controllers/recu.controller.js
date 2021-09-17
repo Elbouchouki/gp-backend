@@ -3,7 +3,7 @@ const { Sequelize, Op } = require("sequelize");
 
 module.exports = {
   async index(req, res) {
-    const article_id = req.params.article_id;
+    const article_id = req.body.article_id;
     try {
       const recus = await models.Recu.findAll({
         attributes: [
@@ -36,9 +36,10 @@ module.exports = {
           "etats",
         ],
         where: {
-          article_id: { [Op.eq]: article_id },
+          article_id: { [Op.in]: article_id },
         },
-        include: [models.Ville],
+        include: [models.Ville, models.Article],
+        order: ["date_s"],
       });
       res.status(200).json({ result: recus });
     } catch (error) {
@@ -48,7 +49,7 @@ module.exports = {
     }
   },
   async filterDate(req, res) {
-    const article_id = req.params.article_id;
+    const article_id = req.body.article_id;
     const date_from = req.body.date_from;
     const date_to = req.body.date_to;
     try {
@@ -83,10 +84,11 @@ module.exports = {
           "etats",
         ],
         where: {
-          article_id: { [Op.eq]: article_id },
+          article_id: { [Op.in]: article_id },
           date_paiment: { [Op.between]: [date_from, date_to] },
         },
-        include: [models.Ville],
+        include: [models.Ville, models.Article],
+        order: ["date_s"],
       });
 
       res.status(200).json({ result: recus });
@@ -97,7 +99,7 @@ module.exports = {
     }
   },
   async sortVille(req, res) {
-    const article_id = req.params.article_id;
+    const article_id = req.body.article_id;
     const ville_id = req.params.ville_id;
     try {
       const recus = await models.Recu.findAll({
@@ -131,10 +133,11 @@ module.exports = {
           "etats",
         ],
         where: {
-          article_id: { [Op.eq]: article_id },
+          article_id: { [Op.in]: article_id },
           ville_id: { [Op.eq]: ville_id },
         },
-        include: [models.Ville],
+        include: [models.Ville, models.Article],
+        order: ["date_s"],
       });
 
       res.status(200).json({ result: recus });
@@ -145,7 +148,7 @@ module.exports = {
     }
   },
   async sortVilleFilterDate(req, res) {
-    const article_id = req.params.article_id;
+    const article_id = req.body.article_id;
     const ville_id = req.params.ville_id;
     const date_from = req.body.date_from;
     const date_to = req.body.date_to;
@@ -181,11 +184,12 @@ module.exports = {
           "etats",
         ],
         where: {
-          article_id: { [Op.eq]: article_id },
+          article_id: { [Op.in]: article_id },
           ville_id: { [Op.eq]: ville_id },
           date_paiment: { [Op.between]: [date_from, date_to] },
         },
-        include: [models.Ville],
+        include: [models.Ville, models.Article],
+        order: ["date_s"],
       });
       res.status(200).json({ result: recus });
     } catch (error) {

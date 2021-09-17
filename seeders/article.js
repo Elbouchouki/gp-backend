@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert("Articles", [
       {
         num_art: "10100",
-        desc_art: "ticket normal",
+        desc_art: "ticket horaire",
       },
       {
         num_art: "00104",
@@ -17,11 +17,23 @@ module.exports = {
       },
       {
         num_art: "30001",
-        desc_art: "entrée abonné",
+        desc_art: "retour ticket",
+      },
+      {
+        num_art: "30200",
+        desc_art: "sortie abonné",
       },
       {
         num_art: "00200",
+        desc_art: "nouveau abonné",
+      },
+      {
+        num_art: "00201",
         desc_art: "recharge abonné",
+      },
+      {
+        num_art: "00202",
+        desc_art: "recharge abonné oncf",
       },
     ]);
   },

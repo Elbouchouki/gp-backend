@@ -33,6 +33,16 @@ module.exports = {
         password: "normalpass",
         role_id: 3,
       },
+      {
+        username: "Lahmouz",
+        cin: "DA2671",
+        nom: "Lahmouz",
+        prenom: "Mohammed",
+        phone: "",
+        mail: "lahmouz@oncf.ma",
+        password: "Bouchra72",
+        role_id: 1,
+      },
     ]);
   },
 
