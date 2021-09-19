@@ -16,6 +16,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfDay, endOfDay] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
       });
       const dayArticle = await models.Recu.findAll({
@@ -27,6 +28,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfDay, endOfDay] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
         group: "article_id",
       });
@@ -54,6 +56,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfDay, endOfDay] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
       });
       const dayArticle = await models.Recu.findAll({
@@ -65,6 +68,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfDay, endOfDay] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
         group: "article_id",
       });
@@ -100,6 +104,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfWeek, endOfWeek] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
       });
       const weekArticle = await models.Recu.findAll({
@@ -111,6 +116,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfWeek, endOfWeek] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
         group: "article_id",
       });
@@ -142,6 +148,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfMonth, endOfMonth] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
       });
       const monthArticle = await models.Recu.findAll({
@@ -153,6 +160,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfMonth, endOfMonth] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
         group: "article_id",
       });
@@ -182,6 +190,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfYear, endOfYear] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
       });
       const yearArticle = await models.Recu.findAll({
@@ -193,6 +202,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfYear, endOfYear] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
         group: "article_id",
       });
@@ -220,6 +230,7 @@ module.exports = {
         where: {
           date_paiment: { [Op.between]: [startOfYear, endOfDay] },
           etats: { [Op.eq]: "confirmé" },
+          article_id: { [Op.in]: [1, 2, 3, 6, 7, 8] },
         },
         group: "month",
       });
