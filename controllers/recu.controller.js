@@ -9,6 +9,8 @@ module.exports = {
         attributes: [
           "caisse",
           "valeur",
+          "societe",
+          "participant",
           [
             Sequelize.fn(
               "date_format",
@@ -57,6 +59,8 @@ module.exports = {
         attributes: [
           "caisse",
           "valeur",
+          "societe",
+          "participant",
           [
             Sequelize.fn(
               "date_format",
@@ -106,6 +110,8 @@ module.exports = {
         attributes: [
           "caisse",
           "valeur",
+          "societe",
+          "participant",
           [
             Sequelize.fn(
               "date_format",
@@ -157,6 +163,8 @@ module.exports = {
         attributes: [
           "caisse",
           "valeur",
+          "societe",
+          "participant",
           [
             Sequelize.fn(
               "date_format",
