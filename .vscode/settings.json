@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d463ebb2-4285-4fda-8c16-bd2489ea6130/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/gsetpark",
+    "appService.deploySubpath": "."
+}
