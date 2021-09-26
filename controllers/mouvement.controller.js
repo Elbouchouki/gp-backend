@@ -10,7 +10,7 @@ module.exports = {
             Sequelize.fn(
               "date_format",
               Sequelize.col("date_m"),
-              "%d/%m/%Y %h:%i"
+              "%d/%m/%Y %h:%i %p"
             ),
             "date_m",
           ],
@@ -35,7 +35,7 @@ module.exports = {
             Sequelize.fn(
               "date_format",
               Sequelize.col("date_m"),
-              "%d/%m/%Y %h:%i"
+              "%d/%m/%Y %h:%i %p"
             ),
             "date_m",
           ],
@@ -62,7 +62,7 @@ module.exports = {
             Sequelize.fn(
               "date_format",
               Sequelize.col("date_m"),
-              "%d/%m/%Y %h:%i"
+              "%d/%m/%Y %h:%i %p"
             ),
             "date_m",
           ],
@@ -91,7 +91,7 @@ module.exports = {
             Sequelize.fn(
               "date_format",
               Sequelize.col("date_m"),
-              "%d/%m/%Y %h:%i"
+              "%d/%m/%Y %h:%i %p"
             ),
             "date_m",
           ],
