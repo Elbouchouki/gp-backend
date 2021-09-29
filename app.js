@@ -10,6 +10,7 @@ const { ROLE } = require("./helper/role");
 
 const userRoute = require("./routes/user");
 const recuRoute = require("./routes/recu");
+const bilanRoute = require("./routes/bilan");
 const mouvementRoute = require("./routes/mouvement");
 const articleRoute = require("./routes/article");
 const statisticRoute = require("./routes/statistic");
@@ -37,6 +38,12 @@ app.use(
   checkAuth,
   checkRole([ROLE.ADMIN, ROLE.FINANCER, ROLE.NORMAL]),
   recuRoute
+);
+app.use(
+  "/bilans",
+  checkAuth,
+  checkRole([ROLE.ADMIN, ROLE.FINANCER, ROLE.NORMAL]),
+  bilanRoute
 );
 app.use(
   "/mouvements",

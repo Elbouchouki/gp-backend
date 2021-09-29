@@ -7,11 +7,7 @@ module.exports = {
       const mouvements = await models.Mouvement.findAll({
         attributes: [
           [
-            Sequelize.fn(
-              "date_format",
-              Sequelize.col("date_m"),
-              "%d/%m/%Y %h:%i %p"
-            ),
+            Sequelize.fn("date_format", Sequelize.col("date_m"), "%d/%m/%Y %T"),
             "date_m",
           ],
           "desc_m",
@@ -32,11 +28,7 @@ module.exports = {
       const mouvements = await models.Mouvement.findAll({
         attributes: [
           [
-            Sequelize.fn(
-              "date_format",
-              Sequelize.col("date_m"),
-              "%d/%m/%Y %h:%i %p"
-            ),
+            Sequelize.fn("date_format", Sequelize.col("date_m"), "%d/%m/%Y %T"),
             "date_m",
           ],
           "desc_m",
@@ -59,11 +51,7 @@ module.exports = {
       const mouvements = await models.Mouvement.findAll({
         attributes: [
           [
-            Sequelize.fn(
-              "date_format",
-              Sequelize.col("date_m"),
-              "%d/%m/%Y %h:%i %p"
-            ),
+            Sequelize.fn("date_format", Sequelize.col("date_m"), "%d/%m/%Y %T"),
             "date_m",
           ],
           "desc_m",
@@ -88,11 +76,7 @@ module.exports = {
       const mouvements = await models.Mouvement.findAll({
         attributes: [
           [
-            Sequelize.fn(
-              "date_format",
-              Sequelize.col("date_m"),
-              "%d/%m/%Y %h:%i %p"
-            ),
+            Sequelize.fn("date_format", Sequelize.col("date_m"), "%d/%m/%Y %T"),
             "date_m",
           ],
           "desc_m",

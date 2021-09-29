@@ -1,5 +1,5 @@
 const models = require("../models");
-const { Op, QueryTypes } = require("sequelize");
+const { Sequelize, Op, QueryTypes } = require("sequelize");
 const db = require("../models/index");
 const sequelize = db.sequelize;
 const moment = require("moment");
@@ -7,14 +7,23 @@ const moment = require("moment");
 module.exports = {
   async index(req, res) {
     const ville_id = req.body.ville_id;
-    const dates = req.body.dates;
-    console.log(dates);
+    const date_from = req.body.date_from;
+    const date_to = req.body.date_to;
     try {
-      const resp = await sequelize.query("call getNewExcel(:ville_id,:dates)", {
-        replacements: {
-          ville_id: ville_id,
-          dates: dates,
+      const resp = await models.Recu.findAll({
+        attributes: [
+          [Sequelize.fn("date", Sequelize.col("date_paiment")), "date"],
+          [Sequelize.fn("count", Sequelize.col("article_id")), "nbr"],
+          [Sequelize.fn("sum", Sequelize.col("valeur")), "montant"],
+          "etats",
+          "article_id",
+        ],
+        where: {
+          date_paiment: { [Op.between]: [date_from, date_to] },
+          ville_id: { [Op.eq]: ville_id },
         },
+        include: [models.Article],
+        group: ["date", "article_id", "etats"],
       });
 
       res.status(200).json({
@@ -27,13 +36,24 @@ module.exports = {
     }
   },
   async all(req, res) {
-    const dates = req.body.dates;
+    const date_from = req.body.date_from;
+    const date_to = req.body.date_to;
     try {
-      const resp = await sequelize.query("call getNewExcel_all(:dates)", {
-        replacements: {
-          dates: dates,
+      const resp = await models.Recu.findAll({
+        attributes: [
+          [Sequelize.fn("date", Sequelize.col("date_paiment")), "date"],
+          [Sequelize.fn("count", Sequelize.col("article_id")), "nbr"],
+          [Sequelize.fn("sum", Sequelize.col("valeur")), "montant"],
+          "etats",
+          "article_id",
+        ],
+        where: {
+          date_paiment: { [Op.between]: [date_from, date_to] },
         },
+        include: [models.Article],
+        group: ["date", "article_id", "etats"],
       });
+
       res.status(200).json({
         result: resp,
       });
