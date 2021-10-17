@@ -62,6 +62,26 @@ module.exports = {
         name: "show_recu_recharge_abonne",
         type: "show",
       },
+      {
+        name: "show_users",
+        type: "show",
+      },
+      {
+        name: "update_users",
+        type: "manage",
+      },
+      {
+        name: "delete_users",
+        type: "manage",
+      },
+      {
+        name: "show_bilan",
+        type: "show",
+      },
+      {
+        name: "show_traffic",
+        type: "show",
+      },
     ];
     // const [admin, financer, normal] =
     const firstRoleID = await queryInterface.bulkInsert("Roles", rolesList, {
@@ -136,6 +156,26 @@ module.exports = {
       },
       {
         PermissionId: firstPermID + 11,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 12,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 13,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 14,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 15,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 16,
         RoleID: firstRoleID,
       },
       //financer

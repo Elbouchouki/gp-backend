@@ -218,7 +218,7 @@ module.exports = {
     }
   },
   async seven(req, res) {
-    const endOfDay = moment(new Date()).format("YYYY-MM-DD 23:59:59");
+    const endOfDay = moment().format("YYYY-MM-DD 23:59:59");
     const startOfYear = moment().startOf("year").format("YYYY-MM-DD 00:00:00");
     try {
       const seven = await models.Recu.findAll({
@@ -236,6 +236,42 @@ module.exports = {
       });
       res.status(200).json({
         seven: seven,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: "error",
+      });
+    }
+  },
+  async traffic(req, res) {
+    const ville_id = req.body.ville_id;
+    const date_from = req.body.date_from;
+    const date_to = req.body.date_to;
+    try {
+      const sorties = await sequelize.query(
+        "call getSorties(:ville_id,:date_f,:date_t)",
+        {
+          replacements: {
+            ville_id: ville_id,
+            date_f: date_from,
+            date_t: date_to,
+          },
+        }
+      );
+      const entree = await sequelize.query(
+        "call getEntree(:ville_id,:date_f,:date_t)",
+        {
+          replacements: {
+            ville_id: ville_id,
+            date_f: date_from,
+            date_t: date_to,
+          },
+        }
+      );
+      res.status(200).json({
+        entree: entree,
+        sorties: sorties,
       });
     } catch (error) {
       console.log(error);

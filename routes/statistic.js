@@ -8,5 +8,6 @@ router.get("/week", statisticController.week);
 router.get("/month", statisticController.month);
 router.get("/year", statisticController.year);
 router.get("/seven", statisticController.seven);
+router.post("/traffic", statisticController.traffic);
 
 module.exports = router;

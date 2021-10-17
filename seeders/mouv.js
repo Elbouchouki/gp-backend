@@ -19,6 +19,10 @@ module.exports = {
         desc_mouv: "sortie en manuel",
         type: "Sorties",
       },
+      {
+        desc_mouv: "sortie en bras cassé",
+        type: "Sorties",
+      },
     ]);
   },
 
