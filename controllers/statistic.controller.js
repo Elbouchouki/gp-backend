@@ -245,9 +245,10 @@ module.exports = {
     }
   },
   async traffic(req, res) {
-    const ville_id = req.body.ville_id;
+    const ville = req.body.ville_id;
     const date_from = req.body.date_from;
     const date_to = req.body.date_to;
+    const ville_id = ville ? ville : 0;
     try {
       const sorties = await sequelize.query(
         "call getSorties(:ville_id,:date_f,:date_t)",
