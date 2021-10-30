@@ -128,7 +128,7 @@ module.exports = {
           ],
         ],
         where: {
-          // type: { [Op.eq]: type },
+          // type: { [Op.eq]: type },.
           ville_id: { [Op.eq]: ville_id },
           date_d: { [Op.between]: [date_from, date_to] },
         },
