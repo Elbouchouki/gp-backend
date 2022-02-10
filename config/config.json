@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "dyxsrmdu_gp",
-    "password": "Gestpark2021",
-    "database": "dyxsrmdu_gp",
-    "host": "svr3.educationhost.cloud",
+    "username": "javUBjsyIc",
+    "password": "ceZ7S4gYpk",
+    "database": "javUBjsyIc",
+    "host": "remotemysql.com",
     "dialect": "mysql",
     "dialectOptions": {
       "useUTC": false
@@ -14,10 +14,10 @@
   }
   },
   "test": {
-    "username": "dyxsrmdu_gp",
-    "password": "Gestpark2021",
-    "database": "dyxsrmdu_gp",
-    "host": "svr3.educationhost.cloud",
+    "username": "javUBjsyIc",
+    "password": "ceZ7S4gYpk",
+    "database": "javUBjsyIc",
+    "host": "remotemysql.com",
     "dialect": "mysql",
     "dialectOptions": {
       "useUTC": false
@@ -28,10 +28,10 @@
   }
   },
   "production": {
-    "username": "dyxsrmdu_gp",
-    "password": "Gestpark2021",
-    "database": "dyxsrmdu_gp",
-    "host": "svr3.educationhost.cloud",
+    "username": "javUBjsyIc",
+    "password": "ceZ7S4gYpk",
+    "database": "javUBjsyIc",
+    "host": "remotemysql.com",
     "dialect": "mysql","define": {
       "timestamps": false
     },

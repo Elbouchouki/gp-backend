@@ -7,10 +7,16 @@ module.exports = {
         role_name: "admin",
       },
       {
-        role_name: "financer",
+        role_name: "superviseur",
       },
       {
-        role_name: "normal",
+        role_name: "financier",
+      },
+      {
+        role_name: "abonne",
+      },
+      {
+        role_name: "caissier",
       },
     ];
     const permissionList = [
@@ -178,13 +184,101 @@ module.exports = {
         PermissionId: firstPermID + 16,
         RoleID: firstRoleID,
       },
-      //financer
+      {
+        PermissionId: firstPermID,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 1,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 2,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 3,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 4,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 5,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 6,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 7,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 8,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 9,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 10,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 11,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 12,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 13,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 14,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 15,
+        RoleID: firstRoleID,
+      },
+      {
+        PermissionId: firstPermID + 16,
+        RoleID: firstRoleID,
+      },
+      // superviseur
       {
         PermissionId: firstPermID,
         RoleID: firstRoleID + 1,
       },
       {
+        PermissionId: firstPermID + 1,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 2,
+        RoleID: firstRoleID + 1,
+      },
+      {
         PermissionId: firstPermID + 3,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 4,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 5,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 6,
         RoleID: firstRoleID + 1,
       },
       {
@@ -196,17 +290,45 @@ module.exports = {
         RoleID: firstRoleID + 1,
       },
       {
+        PermissionId: firstPermID + 9,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 10,
+        RoleID: firstRoleID + 1,
+      },
+      {
         PermissionId: firstPermID + 11,
         RoleID: firstRoleID + 1,
       },
+      {
+        PermissionId: firstPermID + 12,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 13,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 14,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 15,
+        RoleID: firstRoleID + 1,
+      },
+      {
+        PermissionId: firstPermID + 16,
+        RoleID: firstRoleID + 1,
+      },
 
-      //normal
+      //financer
       {
         PermissionId: firstPermID,
         RoleID: firstRoleID + 2,
       },
       {
-        PermissionId: firstPermID + 1,
+        PermissionId: firstPermID + 3,
         RoleID: firstRoleID + 2,
       },
       {
@@ -214,9 +336,48 @@ module.exports = {
         RoleID: firstRoleID + 2,
       },
       {
-        PermissionId: firstPermID + 10,
+        PermissionId: firstPermID + 8,
         RoleID: firstRoleID + 2,
       },
+      {
+        PermissionId: firstPermID + 11,
+        RoleID: firstRoleID + 2,
+      },
+
+      // //caissier
+      // {
+      //   PermissionId: firstPermID,
+      //   RoleID: firstRoleID +3,
+      // },
+      // {
+      //   PermissionId: firstPermID + 1,
+      //   RoleID: firstRoleID +3,
+      // },
+      // {
+      //   PermissionId: firstPermID + 7,
+      //   RoleID: firstRoleID +3,
+      // },
+      // {
+      //   PermissionId: firstPermID + 10,
+      //   RoleID: firstRoleID +3,
+      // },
+      // //abonne
+      // {
+      //   PermissionId: firstPermID,
+      //   RoleID: firstRoleID +3,
+      // },
+      // {
+      //   PermissionId: firstPermID + 1,
+      //   RoleID: firstRoleID +3,
+      // },
+      // {
+      //   PermissionId: firstPermID + 7,
+      //   RoleID: firstRoleID +3,
+      // },
+      // {
+      //   PermissionId: firstPermID + 10,
+      //   RoleID: firstRoleID +3,
+      // },
     ];
     await queryInterface.bulkInsert("RolePermissions", rolePermissionList);
   },

@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.belongsTo(models.Role, { foreignKey: "role_id" });
+      // User.hasMany(models.Ticket, { foreignKey: "abonne_id" });
+      // User.hasMany(models.Ticket, { foreignKey: "caissier_id" });
     }
   }
   User.init(
